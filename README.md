@@ -1,6 +1,6 @@
 <H1><b>Koa-JS - next generation web framework</H1></b>
 This project demonstrates the creation of an application (web server) based on koa-js, which allows
-run static web pages. also creating a docker file from a js script, as well as deploying it to kubernetes
+run static web pages. also creating a docker image from a js script, as well as deploying it to kubernetes
 with 3 replicas, logs and a load balancer<br><br><br>
 
 
