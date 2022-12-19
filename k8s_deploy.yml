@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koa-web-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: koa-web-service
+  template:
+    metadata:
+      labels:
+        app: koa-web-service
+    spec:
+      containers:
+      - name: koa-web-service
+        image: artemrafikov/artemrepo:koa-js
+        volumeMounts:
+        - name: logs
+          mountPath: /app/logs
+      volumes:
+      - name: logs
+        persistentVolumeClaim:
+          claimName: my-log-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: koa-web-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: koa-web-service
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
